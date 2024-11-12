@@ -17,8 +17,8 @@ require('./Models/db');
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/auth', AuthRouter);
-app.use('/products', ProductRouter);
+app.get('/auth', AuthRouter);
+app.get('/products', ProductRouter);
 
 
  app.listen(PORT, () => {
