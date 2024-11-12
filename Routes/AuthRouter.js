@@ -3,8 +3,8 @@ const { signupValidation, loginValidation } = require('../Middleawares/AuthValid
 
 const router = require('express').Router();
 
-router.get('/login', loginValidation, login);
+router.post('/login', loginValidation, login);
 
-router.get('/signup', signupValidation, signup);
+router.post('/signup', signupValidation, signup);
 
 module.exports = router;
