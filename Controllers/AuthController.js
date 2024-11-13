@@ -17,6 +17,20 @@ const signup = async (req, res) => {
                 message: 'User created successfully',
                 success: true
             });
+         const jwtToken = jwt.sign(
+            {email: user.email, _id: user._id},
+            process.env.JWT_SECRET,
+            { expiresIn: '24h' }
+        );
+
+        res.status(200)
+            .json({ 
+                message: 'Login Success',
+                success: true,
+                jwtToken,
+                email,
+                name: user.name
+            });
         
     } catch (err) {
         res.status(500)
