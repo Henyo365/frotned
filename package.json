@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --omit=dev"
+    "start": "node index.js --omit=dev"
   },
   "keywords": [],
   "author": "",
