@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../Models/User');
+const sendEmail = require('../utils/email');
 
 const signup = async (req, res) => {
     try {
@@ -33,12 +34,25 @@ const signup = async (req, res) => {
             name: newUser.name
         });
 
+        // Enviar correo de bienvenida
+        sendEmail({
+            email: newUser.email,
+            subject: 'Welcome to our app',
+            html: `
+                <h1>Welcome to our app, ${newUser.name}</h1>
+                <p>Thanks for signing up!</p>
+            `    
+        });
+
+        createSendToken(newUser, 201, res, 'User created successfully');
+
     } catch (err) {
         res.status(500).json({ 
             message: 'Internal server error',
             success: false
         });
     }
+
 };
 
 const login = async (req, res) => {
